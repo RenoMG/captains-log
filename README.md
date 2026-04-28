@@ -10,7 +10,7 @@ I put a lot of hours into it and, this is my first big personal project and am r
 
 Hopefully, everything works! I spent a LOT of time making sure to cover specific situations, etc.
 
-Enjoy! 
+Enjoy!! 
 
 ## Installation
 
