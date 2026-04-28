@@ -57,15 +57,17 @@ def edit_log_title(title_old, title_new):
             print(f"Uh oh.. something went wrong... I was not able to edit the log! ERROR: {e}")
 
 def create_log(title, get_date_conversion):
-    for log_title in list_log_names():
-        if title == log_title:
-            if title.endswith("Copy") != True and title[-3].endswith("-") != True:
-                title += " Copy"
-            elif title.endswith("Copy"):
-                title += " - 1"
-            elif title[-1].isdigit():
-                num = int(title[-1]) + 1
-                title = title[:-1] + f"{num}"
+    existing = set(list_log_names())
+
+    if title in existing:
+        if not title.endswith(" Copy"):
+            title += " Copy"
+
+        if title in existing:
+            counter = 1
+            while f"{title} - {counter}" in existing:
+                counter += 1
+            title = f"{title} - {counter}"
 
     with closing(database_conn_helper()) as db_file:
         try:
